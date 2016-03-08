@@ -1,0 +1,522 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F4F2D4E21C8E6DC000D0AC99 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2D4E11C8E6DC000D0AC99 /* AppDelegate.swift */; };
+		F4F2D4E41C8E6DC000D0AC99 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2D4E31C8E6DC000D0AC99 /* ViewController.swift */; };
+		F4F2D4E71C8E6DC000D0AC99 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4F2D4E51C8E6DC000D0AC99 /* Main.storyboard */; };
+		F4F2D4EA1C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4F2D4E81C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodeld */; };
+		F4F2D4EC1C8E6DC000D0AC99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F4F2D4EB1C8E6DC000D0AC99 /* Assets.xcassets */; };
+		F4F2D4EF1C8E6DC000D0AC99 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4F2D4ED1C8E6DC000D0AC99 /* LaunchScreen.storyboard */; };
+		F4F2D4FA1C8E6DC100D0AC99 /* KDTreeMapKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2D4F91C8E6DC100D0AC99 /* KDTreeMapKitTests.swift */; };
+		F4F2D5051C8E6DC100D0AC99 /* KDTreeMapKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2D5041C8E6DC100D0AC99 /* KDTreeMapKitUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F4F2D4F61C8E6DC100D0AC99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4F2D4D61C8E6DC000D0AC99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4F2D4DD1C8E6DC000D0AC99;
+			remoteInfo = KDTreeMapKit;
+		};
+		F4F2D5011C8E6DC100D0AC99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F4F2D4D61C8E6DC000D0AC99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F4F2D4DD1C8E6DC000D0AC99;
+			remoteInfo = KDTreeMapKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F4F2D4DE1C8E6DC000D0AC99 /* KDTreeMapKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KDTreeMapKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F2D4E11C8E6DC000D0AC99 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F4F2D4E31C8E6DC000D0AC99 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F4F2D4E61C8E6DC000D0AC99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F4F2D4E91C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = KDTreeMapKit.xcdatamodel; sourceTree = "<group>"; };
+		F4F2D4EB1C8E6DC000D0AC99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F4F2D4EE1C8E6DC000D0AC99 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F4F2D4F01C8E6DC000D0AC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4F2D4F51C8E6DC000D0AC99 /* KDTreeMapKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KDTreeMapKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F2D4F91C8E6DC100D0AC99 /* KDTreeMapKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDTreeMapKitTests.swift; sourceTree = "<group>"; };
+		F4F2D4FB1C8E6DC100D0AC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4F2D5001C8E6DC100D0AC99 /* KDTreeMapKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KDTreeMapKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4F2D5041C8E6DC100D0AC99 /* KDTreeMapKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KDTreeMapKitUITests.swift; sourceTree = "<group>"; };
+		F4F2D5061C8E6DC100D0AC99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F4F2D4DB1C8E6DC000D0AC99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F2D4F21C8E6DC000D0AC99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F2D4FD1C8E6DC100D0AC99 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F4F2D4D51C8E6DC000D0AC99 = {
+			isa = PBXGroup;
+			children = (
+				F4F2D4E01C8E6DC000D0AC99 /* KDTreeMapKit */,
+				F4F2D4F81C8E6DC100D0AC99 /* KDTreeMapKitTests */,
+				F4F2D5031C8E6DC100D0AC99 /* KDTreeMapKitUITests */,
+				F4F2D4DF1C8E6DC000D0AC99 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F4F2D4DF1C8E6DC000D0AC99 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F4F2D4DE1C8E6DC000D0AC99 /* KDTreeMapKit.app */,
+				F4F2D4F51C8E6DC000D0AC99 /* KDTreeMapKitTests.xctest */,
+				F4F2D5001C8E6DC100D0AC99 /* KDTreeMapKitUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F4F2D4E01C8E6DC000D0AC99 /* KDTreeMapKit */ = {
+			isa = PBXGroup;
+			children = (
+				F4F2D4E11C8E6DC000D0AC99 /* AppDelegate.swift */,
+				F4F2D4E31C8E6DC000D0AC99 /* ViewController.swift */,
+				F4F2D4E51C8E6DC000D0AC99 /* Main.storyboard */,
+				F4F2D4EB1C8E6DC000D0AC99 /* Assets.xcassets */,
+				F4F2D4ED1C8E6DC000D0AC99 /* LaunchScreen.storyboard */,
+				F4F2D4F01C8E6DC000D0AC99 /* Info.plist */,
+				F4F2D4E81C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodeld */,
+			);
+			path = KDTreeMapKit;
+			sourceTree = "<group>";
+		};
+		F4F2D4F81C8E6DC100D0AC99 /* KDTreeMapKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				F4F2D4F91C8E6DC100D0AC99 /* KDTreeMapKitTests.swift */,
+				F4F2D4FB1C8E6DC100D0AC99 /* Info.plist */,
+			);
+			path = KDTreeMapKitTests;
+			sourceTree = "<group>";
+		};
+		F4F2D5031C8E6DC100D0AC99 /* KDTreeMapKitUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F4F2D5041C8E6DC100D0AC99 /* KDTreeMapKitUITests.swift */,
+				F4F2D5061C8E6DC100D0AC99 /* Info.plist */,
+			);
+			path = KDTreeMapKitUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F4F2D4DD1C8E6DC000D0AC99 /* KDTreeMapKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F2D5091C8E6DC100D0AC99 /* Build configuration list for PBXNativeTarget "KDTreeMapKit" */;
+			buildPhases = (
+				F4F2D4DA1C8E6DC000D0AC99 /* Sources */,
+				F4F2D4DB1C8E6DC000D0AC99 /* Frameworks */,
+				F4F2D4DC1C8E6DC000D0AC99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KDTreeMapKit;
+			productName = KDTreeMapKit;
+			productReference = F4F2D4DE1C8E6DC000D0AC99 /* KDTreeMapKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F4F2D4F41C8E6DC000D0AC99 /* KDTreeMapKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F2D50C1C8E6DC100D0AC99 /* Build configuration list for PBXNativeTarget "KDTreeMapKitTests" */;
+			buildPhases = (
+				F4F2D4F11C8E6DC000D0AC99 /* Sources */,
+				F4F2D4F21C8E6DC000D0AC99 /* Frameworks */,
+				F4F2D4F31C8E6DC000D0AC99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4F2D4F71C8E6DC100D0AC99 /* PBXTargetDependency */,
+			);
+			name = KDTreeMapKitTests;
+			productName = KDTreeMapKitTests;
+			productReference = F4F2D4F51C8E6DC000D0AC99 /* KDTreeMapKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F4F2D4FF1C8E6DC100D0AC99 /* KDTreeMapKitUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F4F2D50F1C8E6DC100D0AC99 /* Build configuration list for PBXNativeTarget "KDTreeMapKitUITests" */;
+			buildPhases = (
+				F4F2D4FC1C8E6DC100D0AC99 /* Sources */,
+				F4F2D4FD1C8E6DC100D0AC99 /* Frameworks */,
+				F4F2D4FE1C8E6DC100D0AC99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F4F2D5021C8E6DC100D0AC99 /* PBXTargetDependency */,
+			);
+			name = KDTreeMapKitUITests;
+			productName = KDTreeMapKitUITests;
+			productReference = F4F2D5001C8E6DC100D0AC99 /* KDTreeMapKitUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F4F2D4D61C8E6DC000D0AC99 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = b3k3r;
+				TargetAttributes = {
+					F4F2D4DD1C8E6DC000D0AC99 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					F4F2D4F41C8E6DC000D0AC99 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = F4F2D4DD1C8E6DC000D0AC99;
+					};
+					F4F2D4FF1C8E6DC100D0AC99 = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = F4F2D4DD1C8E6DC000D0AC99;
+					};
+				};
+			};
+			buildConfigurationList = F4F2D4D91C8E6DC000D0AC99 /* Build configuration list for PBXProject "KDTreeMapKit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F4F2D4D51C8E6DC000D0AC99;
+			productRefGroup = F4F2D4DF1C8E6DC000D0AC99 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F4F2D4DD1C8E6DC000D0AC99 /* KDTreeMapKit */,
+				F4F2D4F41C8E6DC000D0AC99 /* KDTreeMapKitTests */,
+				F4F2D4FF1C8E6DC100D0AC99 /* KDTreeMapKitUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F4F2D4DC1C8E6DC000D0AC99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F2D4EF1C8E6DC000D0AC99 /* LaunchScreen.storyboard in Resources */,
+				F4F2D4EC1C8E6DC000D0AC99 /* Assets.xcassets in Resources */,
+				F4F2D4E71C8E6DC000D0AC99 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F2D4F31C8E6DC000D0AC99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F2D4FE1C8E6DC100D0AC99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F4F2D4DA1C8E6DC000D0AC99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F2D4EA1C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodeld in Sources */,
+				F4F2D4E41C8E6DC000D0AC99 /* ViewController.swift in Sources */,
+				F4F2D4E21C8E6DC000D0AC99 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F2D4F11C8E6DC000D0AC99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F2D4FA1C8E6DC100D0AC99 /* KDTreeMapKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F4F2D4FC1C8E6DC100D0AC99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4F2D5051C8E6DC100D0AC99 /* KDTreeMapKitUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F4F2D4F71C8E6DC100D0AC99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4F2D4DD1C8E6DC000D0AC99 /* KDTreeMapKit */;
+			targetProxy = F4F2D4F61C8E6DC100D0AC99 /* PBXContainerItemProxy */;
+		};
+		F4F2D5021C8E6DC100D0AC99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F4F2D4DD1C8E6DC000D0AC99 /* KDTreeMapKit */;
+			targetProxy = F4F2D5011C8E6DC100D0AC99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F4F2D4E51C8E6DC000D0AC99 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4F2D4E61C8E6DC000D0AC99 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F4F2D4ED1C8E6DC000D0AC99 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F4F2D4EE1C8E6DC000D0AC99 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F4F2D5071C8E6DC100D0AC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F4F2D5081C8E6DC100D0AC99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F4F2D50A1C8E6DC100D0AC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KDTreeMapKit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Package.KDTreeMapKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F4F2D50B1C8E6DC100D0AC99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KDTreeMapKit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Package.KDTreeMapKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F4F2D50D1C8E6DC100D0AC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KDTreeMapKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Package.KDTreeMapKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KDTreeMapKit.app/KDTreeMapKit";
+			};
+			name = Debug;
+		};
+		F4F2D50E1C8E6DC100D0AC99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = KDTreeMapKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Package.KDTreeMapKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KDTreeMapKit.app/KDTreeMapKit";
+			};
+			name = Release;
+		};
+		F4F2D5101C8E6DC100D0AC99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KDTreeMapKitUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Package.KDTreeMapKitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = KDTreeMapKit;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		F4F2D5111C8E6DC100D0AC99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = KDTreeMapKitUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Package.KDTreeMapKitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = KDTreeMapKit;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F4F2D4D91C8E6DC000D0AC99 /* Build configuration list for PBXProject "KDTreeMapKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F2D5071C8E6DC100D0AC99 /* Debug */,
+				F4F2D5081C8E6DC100D0AC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F4F2D5091C8E6DC100D0AC99 /* Build configuration list for PBXNativeTarget "KDTreeMapKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F2D50A1C8E6DC100D0AC99 /* Debug */,
+				F4F2D50B1C8E6DC100D0AC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F4F2D50C1C8E6DC100D0AC99 /* Build configuration list for PBXNativeTarget "KDTreeMapKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F2D50D1C8E6DC100D0AC99 /* Debug */,
+				F4F2D50E1C8E6DC100D0AC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F4F2D50F1C8E6DC100D0AC99 /* Build configuration list for PBXNativeTarget "KDTreeMapKitUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F4F2D5101C8E6DC100D0AC99 /* Debug */,
+				F4F2D5111C8E6DC100D0AC99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F4F2D4E81C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F4F2D4E91C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodel */,
+			);
+			currentVersion = F4F2D4E91C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodel */;
+			path = KDTreeMapKit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F4F2D4D61C8E6DC000D0AC99 /* Project object */;
+}
