@@ -213,15 +213,15 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         var lastCtrl = 0.0
         
         //x axis
-        if data.controlAxis == 0 {
+        if data.controlAxis == Axis.X {
             lastCtrl = XscreenPointFromMapPoint(data.controlValue, maxX: maxX)
             
             
-            if data.prevNodeSide == 0  { //left side
+            if data.prevNodeSide == TreeDataIdentifier.Left  { //left side
                 
                 viewLine = UIView(frame: CGRect(x:lastCtrl , y: 0.0, width: 3.0, height: lastControl))
                 
-            } else if data.prevNodeSide == 1 { //Right Side
+            } else if data.prevNodeSide == TreeDataIdentifier.Right { //Right Side
                 
                 viewLine = UIView(frame: CGRect(x:lastCtrl , y: lastControl, width: 3.0, height: Double(view.frame.size.height)))
             } else {
@@ -234,11 +234,11 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
             
             lastCtrl = YscreenPointFromMapPoint(data.controlValue, maxY: maxY)
             
-            if data.prevNodeSide == 0  { //left side
+            if data.prevNodeSide == TreeDataIdentifier.Left  { //left side
                 
                 viewLine = UIView(frame: CGRect(x: 0, y: lastCtrl, width: lastControl, height: 3.0))
                 
-            } else if data.prevNodeSide == 1 { //Right Side
+            } else if data.prevNodeSide == TreeDataIdentifier.Right { //Right Side
                 
                 viewLine = UIView(frame: CGRect(x: lastControl, y: lastCtrl, width: Double(view.frame.size.width), height: 3.0))
             } else {

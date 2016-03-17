@@ -64,12 +64,12 @@ class KDTree  {
         
         
         let controlValue = rootNode.control
-        var dataIndex = -1
+        var dataIndex: TreeDataIdentifier = .Nothing
         
         if testDataIndex >= 0 {
            dataIndex = testData[testDataIndex].nodeSide
         }  else {
-            dataIndex = 2
+            dataIndex = .Root
         }
         
         
@@ -82,7 +82,8 @@ class KDTree  {
             //let cx: Double = center.x.convert()
             if let leftNode = rootNode.leftNode where center.x < controlValue {
                 
-                let data = TreeData(cv: controlValue!, ca: 0, ns: 0, pns: dataIndex)
+                
+                let data = TreeData(cv: controlValue!, ca: Axis.X, ns: TreeDataIdentifier.Left, pns: dataIndex, btc: false)
                 testData.append(data)
                 testDataIndex++
                 
@@ -92,6 +93,7 @@ class KDTree  {
                 //of the control, and if it does, possible points inside the area are possible,
                 //recurse down that side and check.
                 if let rightNode = rootNode.rightNode where center.x + queryArea.width / 2 > controlValue {
+                    testData[testDataIndex].backThroughCheck = true
                     querySectionWith(center, Query: queryArea, Root: rightNode)
                     
                 }
@@ -100,7 +102,7 @@ class KDTree  {
                 
                 if let rightNode = rootNode.rightNode {
                     
-                    let data = TreeData(cv: controlValue!, ca: 0, ns: 1, pns: dataIndex)
+                    let data = TreeData(cv: controlValue!, ca: Axis.X, ns: TreeDataIdentifier.Right, pns: dataIndex, btc: false)
                     testData.append(data)
                     testDataIndex++
                     
@@ -110,6 +112,7 @@ class KDTree  {
                     //of the control, and if it does, possible points inside the area are possible,
                     //recurse down that side and check.
                     if let leftNode = rootNode.leftNode where center.x - queryArea.width / 2 < controlValue {
+                        testData[testDataIndex].backThroughCheck = true
                         querySectionWith(center, Query: queryArea, Root: leftNode)
                     }
                     
@@ -127,7 +130,7 @@ class KDTree  {
             //let cy: Double = center.y.convert()
             if let leftNode = rootNode.leftNode where center.y < controlValue {
                 
-                let data = TreeData(cv: controlValue!, ca: 1, ns: 0, pns: dataIndex)
+                let data = TreeData(cv: controlValue!, ca: Axis.Y, ns: TreeDataIdentifier.Left, pns: dataIndex, btc: false)
                 testData.append(data)
                 testDataIndex++
                 
@@ -137,6 +140,7 @@ class KDTree  {
                 //of the control, and if it does, possible points inside the area are possible,
                 //recurse down that side and check.
                 if let rightNode = rootNode.rightNode where center.y + queryArea.height / 2 > controlValue {
+                    testData[testDataIndex].backThroughCheck = true
                     querySectionWith(center, Query: queryArea, Root: rightNode)
                     
                 }
@@ -145,7 +149,7 @@ class KDTree  {
                 //Where condition failed and should recurse down the right side (center is greater)
                 if let rightNode = rootNode.rightNode {
                     
-                    let data = TreeData(cv: controlValue!, ca: 1, ns: 1, pns: dataIndex)
+                    let data = TreeData(cv: controlValue!, ca: Axis.Y, ns: TreeDataIdentifier.Right, pns: dataIndex, btc: false)
                     testData.append(data)
                     testDataIndex++
                     
@@ -155,6 +159,7 @@ class KDTree  {
                     //of the control, and if it does, possible points inside the area are possible,
                     //recurse down that side and check.
                     if let leftNode = rootNode.leftNode where center.y - queryArea.height / 2 < controlValue {
+                        testData[testDataIndex].backThroughCheck = true
                         querySectionWith(center, Query: queryArea, Root: leftNode)
                     }
                     
@@ -201,7 +206,13 @@ class KDTree  {
  }
  
  
-
+ enum TreeDataIdentifier {
+    
+    case Left
+    case Right
+    case Root
+    case Nothing
+ }
 
 
 
@@ -209,15 +220,18 @@ class KDTree  {
 struct TreeData {
     
     let controlValue: Double
-    let controlAxis: Int
-    let nodeSide: Int
-    let prevNodeSide: Int
+    let controlAxis: Axis
+    let nodeSide: TreeDataIdentifier
+    let prevNodeSide: TreeDataIdentifier
+    var backThroughCheck: Bool
     
-    init(cv: Double, ca: Int, ns: Int, pns: Int) {
+    init(cv: Double, ca: Axis, ns: TreeDataIdentifier, pns: TreeDataIdentifier, btc: Bool) {
         controlValue = cv
         controlAxis = ca
         nodeSide = ns
         prevNodeSide = pns
+        backThroughCheck = btc
+        
     }
 }
 
