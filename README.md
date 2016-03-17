@@ -1,2 +1,2 @@
 # KDTreeMapKit
-kd tree implementation to query large data sets using core location 
+This repo is version control for the subject of my first blog post.  Using a KDTree to query points and nearest neighbor search large amounts of CL Annotations.  When dealing with lots of points on a MapView, it is naive to have to search through every point and check if the point is contained in the view rect.  This implementation of a KD Tree in swift will allow me to query points much faster and more efficiently. 
