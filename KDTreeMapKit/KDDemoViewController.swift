@@ -27,8 +27,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     var cgQueryArr = Array<CGRect>()
     var viewLines = Array<UIView>()
     
-    let recttree = KDTree<CGFloat>()
-    let doubletree = KDTree<Double>()
+    let doubletree = KDTree()
     
     var currentIteration = 0
     
@@ -54,7 +53,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         let uniquePairs = pairsFromCGPoints(screenPoints)
         
         let start = CFAbsoluteTimeGetCurrent()
-        recttree.buildTree(uniquePairs)
+        doubletree.buildTree(uniquePairs)
         let end = CFAbsoluteTimeGetCurrent()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: "panGesture:")
@@ -85,37 +84,12 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    func determineQueryArea(screenView: UIView) -> MKMapRect {
-        
-        //var qView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50, height: 50))
-        //qView.center = CGPoint(x: Double(self.view.frame.size.width / 2.0), y: Double(self.view.frame.size.height/2.0))
-        
-        let xMin = CGRectGetMinX(screenView.frame)
-        let xMax = CGRectGetMaxX(screenView.frame)
-        let yMin = CGRectGetMinY(screenView.frame)
-        let yMax = CGRectGetMaxY(screenView.frame)
-        
-        let xMinMap = XmapPointFromScreenPoint(xMin, maxX: self.view.frame.size.width, maxMapX: maxX)
-        let xMaxMap = XmapPointFromScreenPoint(xMax, maxX: self.view.frame.size.width, maxMapX: maxX)
-        let yMinMap = YmapPointFromScreenPoint(yMin, maxY: self.view.frame.size.height, maxMapY: maxY)
-        let yMaxMap = YmapPointFromScreenPoint(yMax, maxY: self.view.frame.size.height, maxMapY: maxY)
-        
-        //p1 (xMin, yMin) p2 (xMax, yMin)
-        //p3 (xMin, yMin) p4 (xMin, yMax)
-        
-        let xLength = sqrt(pow(abs(xMinMap - xMaxMap), 2) + pow(abs(yMinMap - yMinMap), 2))
-        let yLength = sqrt(pow(abs(xMinMap - xMinMap), 2) + pow(abs(yMinMap - yMaxMap), 2))
-        
-        //print(self.queryArea.frame.size.width, self.screenView.frame.size.height, xLength, yLength)
-        return MKMapRectMake(xMinMap, yMinMap, yLength, xLength)
-        
-    }
     
     
     
     
-    func collectQueryPointDataFor(Points points: [Pair<Double>],
-        QueryArea query: QueryArea, Tree tree: KDTree<Double>) {
+    func collectQueryPointDataFor(Points points: [Pair],
+        QueryArea query: QueryArea, Tree tree: KDTree) {
         
         var i = 0
         
@@ -131,7 +105,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func collectMapQueryAreaDataFor(queryArea: MKMapRect) {
         
-        let centerPair = Pair<Double>(xc: MKMapRectGetMidX(queryArea), yc: MKMapRectGetMidY(queryArea))
+        let centerPair = Pair(xc: MKMapRectGetMidX(queryArea), yc: MKMapRectGetMidY(queryArea))
         let rectQuery = QueryArea(xc: queryArea.origin.x, yc: queryArea.origin.y, w: queryArea.size.width, h: queryArea.size.height)
         
         doubletree.querySectionWith(centerPair, Query: rectQuery, Root: doubletree.rootNode)
@@ -149,10 +123,10 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
 
     func collectRectQueryAreaDataFor(queryArea: CGRect) {
         
-        let centerPair = Pair<CGFloat>(xc: CGRectGetMidX(queryArea), yc: CGRectGetMidY(queryArea))
+        let centerPair = Pair(xc: Double(CGRectGetMidX(queryArea)), yc: Double(CGRectGetMidY(queryArea)))
         let rectQuery = QueryArea(xc: Double(queryArea.origin.x), yc: Double(queryArea.origin.y), w: Double(queryArea.size.width), h: Double(queryArea.size.height))
         
-        recttree.querySectionWith(centerPair, Query: rectQuery, Root: recttree.rootNode)
+        doubletree.querySectionWith(centerPair, Query: rectQuery, Root: doubletree.rootNode)
         
     }
 
@@ -365,9 +339,9 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func pairsFromMapPoints(mappoints: [MKMapPoint]) -> [Pair<Double>] {
+    func pairsFromMapPoints(mappoints: [MKMapPoint]) -> [Pair] {
         
-        var pairArr: [Pair<Double>] = [Pair]()
+        var pairArr: [Pair] = [Pair]()
         for point in mappoints {
             let newPair = Pair(xc: point.x, yc: point.y)
             pairArr.append(newPair)
@@ -377,11 +351,11 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
-    func pairsFromCGPoints(cgPoints: [CGPoint]) -> [Pair<CGFloat>] {
+    func pairsFromCGPoints(cgPoints: [CGPoint]) -> [Pair] {
         
-        var pairArr: [Pair<CGFloat>] = [Pair]()
+        var pairArr: [Pair] = [Pair]()
         for point in cgPoints {
-            let newPair = Pair(xc: point.x, yc: point.y)
+            let newPair = Pair(xc: Double(point.x), yc: Double(point.y))
             pairArr.append(newPair)
         }
         
@@ -499,4 +473,33 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
 //self.view.bounds = CGRect(x: 300, y: 600, width: 50, height: 20)
 
 //tree.querySectionWith(testPoint, Query: MKMapRectMake(0, 0, 50, 50), Root: tree.rootNode);
+
+
+//    func determineQueryArea(screenView: UIView) -> MKMapRect {
+//
+//        //var qView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50, height: 50))
+//        //qView.center = CGPoint(x: Double(self.view.frame.size.width / 2.0), y: Double(self.view.frame.size.height/2.0))
+//
+//        let xMin = CGRectGetMinX(screenView.frame)
+//        let xMax = CGRectGetMaxX(screenView.frame)
+//        let yMin = CGRectGetMinY(screenView.frame)
+//        let yMax = CGRectGetMaxY(screenView.frame)
+//
+//        let xMinMap = XmapPointFromScreenPoint(xMin, maxX: self.view.frame.size.width, maxMapX: maxX)
+//        let xMaxMap = XmapPointFromScreenPoint(xMax, maxX: self.view.frame.size.width, maxMapX: maxX)
+//        let yMinMap = YmapPointFromScreenPoint(yMin, maxY: self.view.frame.size.height, maxMapY: maxY)
+//        let yMaxMap = YmapPointFromScreenPoint(yMax, maxY: self.view.frame.size.height, maxMapY: maxY)
+//
+//        //p1 (xMin, yMin) p2 (xMax, yMin)
+//        //p3 (xMin, yMin) p4 (xMin, yMax)
+//
+//        let xLength = sqrt(pow(abs(xMinMap - xMaxMap), 2) + pow(abs(yMinMap - yMinMap), 2))
+//        let yLength = sqrt(pow(abs(xMinMap - xMinMap), 2) + pow(abs(yMinMap - yMaxMap), 2))
+//
+//        //print(self.queryArea.frame.size.width, self.screenView.frame.size.height, xLength, yLength)
+//        return MKMapRectMake(xMinMap, yMinMap, yLength, xLength)
+//
+//    }
+
+
 
