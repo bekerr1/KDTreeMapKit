@@ -91,7 +91,7 @@ class KDTree  {
                 //When function comes back around, check if the query area spans the other side
                 //of the control, and if it does, possible points inside the area are possible,
                 //recurse down that side and check.
-                if let rightNode = rootNode.rightNode where center.x + queryArea.width > controlValue {
+                if let rightNode = rootNode.rightNode where center.x + queryArea.width / 2 > controlValue {
                     querySectionWith(center, Query: queryArea, Root: rightNode)
                     
                 }
@@ -109,7 +109,7 @@ class KDTree  {
                     //When function comes back around, check if the query area spans the other side
                     //of the control, and if it does, possible points inside the area are possible,
                     //recurse down that side and check.
-                    if let leftNode = rootNode.leftNode where center.x - queryArea.width < controlValue {
+                    if let leftNode = rootNode.leftNode where center.x - queryArea.width / 2 < controlValue {
                         querySectionWith(center, Query: queryArea, Root: leftNode)
                     }
                     
@@ -136,7 +136,7 @@ class KDTree  {
                 //When function comes back around, check if the query area spans the other side
                 //of the control, and if it does, possible points inside the area are possible,
                 //recurse down that side and check.
-                if let rightNode = rootNode.rightNode where center.y + queryArea.height > controlValue {
+                if let rightNode = rootNode.rightNode where center.y + queryArea.height / 2 > controlValue {
                     querySectionWith(center, Query: queryArea, Root: rightNode)
                     
                 }
@@ -154,7 +154,7 @@ class KDTree  {
                     //When function comes back around, check if the query area spans the other side
                     //of the control, and if it does, possible points inside the area are possible,
                     //recurse down that side and check.
-                    if let leftNode = rootNode.leftNode where center.y - queryArea.height < controlValue {
+                    if let leftNode = rootNode.leftNode where center.y - queryArea.height / 2 < controlValue {
                         querySectionWith(center, Query: queryArea, Root: leftNode)
                     }
                     

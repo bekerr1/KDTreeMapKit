@@ -46,9 +46,14 @@
                                     <constraint firstAttribute="height" constant="50" id="wvt-tE-HOd"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdq-vF-4hT">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdq-vF-4hT">
                                 <rect key="frame" x="215" y="517" width="171" height="63"/>
-                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="0xK-QY-LC5"/>
+                                    <constraint firstAttribute="width" constant="171" id="Nc6-d2-0wa"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <state key="normal" title="Record View"/>
                                 <connections>
                                     <action selector="recordViewData:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qno-hA-t2c"/>
@@ -58,11 +63,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="xdq-vF-4hT" secondAttribute="bottom" constant="20" id="04C-Ma-xML"/>
                             <constraint firstItem="LfT-bV-gRv" firstAttribute="top" secondItem="DgU-Jb-p0y" secondAttribute="bottom" constant="10" id="3Rd-hg-nGt"/>
                             <constraint firstItem="qvP-j4-RZw" firstAttribute="bottom" secondItem="DgU-Jb-p0y" secondAttribute="top" constant="-10" id="EBc-rS-rdN"/>
                             <constraint firstItem="LfT-bV-gRv" firstAttribute="centerX" secondItem="DgU-Jb-p0y" secondAttribute="centerX" id="K5d-ew-Asp"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DgU-Jb-p0y" secondAttribute="bottom" constant="50" id="MM8-lp-9El"/>
                             <constraint firstItem="MX6-IV-KxB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="XZi-FG-BhV"/>
+                            <constraint firstItem="xdq-vF-4hT" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i5C-bj-BeP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DgU-Jb-p0y" secondAttribute="trailing" id="ijl-2e-Rwi"/>
                             <constraint firstItem="qvP-j4-RZw" firstAttribute="centerX" secondItem="DgU-Jb-p0y" secondAttribute="centerX" id="m55-se-G0E"/>
                             <constraint firstItem="MX6-IV-KxB" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rUe-lP-1pc"/>
