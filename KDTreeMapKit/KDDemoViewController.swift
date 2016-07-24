@@ -17,15 +17,20 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     var screenPoints = [CGPoint]()
     
     @IBOutlet weak var nodeColorKey: UIView!
-    @IBOutlet weak var queryArea: UIView!
+    @IBOutlet weak var queryOptions: UISegmentedControl!
+    var queryArea: UIView!
+    
+    var pointMode: Bool = true
     
     var maxX: Double = 0.0
     var maxY: Double = 0.0
     
     var pvArray = Array<Array<TreeData>>()
     var queryArr = Array<MKMapRect>()
-    var cgQueryArr = Array<CGRect>()
+    var cgQueryViewArr = Array<(CGPoint, CGRect)>()
     var viewLines = Array<UIView>()
+    var unique = Array<MKMapPoint>()
+    var uniquePairs = Array<Pair>()
     
     let doubletree = KDTree()
     
@@ -37,39 +42,41 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: init
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(__FUNCTION__)
+        print(#function)
         
-        //let mapView = MKMapView(frame: self.view.frame)
-        //mapView.delegate = self
-        //self.view.addSubview(mapView);
         
-        //let tree = KDTree()
+        queryArea = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        queryArea.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height/2)
+        queryArea.backgroundColor = UIColor.lightGrayColor()
+        self.view.addSubview(queryArea)
+        queryArea.hidden = true
+        
+        
         let parser = PointParser()
         parser.parseData()
         
-        let unique = parser.CLLocationPoints.unique
+        unique = parser.CLLocationPoints.unique
         plotMapPointsInUIView(unique, plotView: self.view)
-        
-        let uniquePairs = pairsFromCGPoints(screenPoints)
+        uniquePairs = pairsFromCGPoints(screenPoints)
         
         let start = CFAbsoluteTimeGetCurrent()
         doubletree.buildTree(uniquePairs)
         let end = CFAbsoluteTimeGetCurrent()
         
-        let panGesture = UIPanGestureRecognizer(target: self, action: "panGesture:")
-        let rotateGesture = UIRotationGestureRecognizer(target: self, action: "rotateGesture:")
-        let pinchGesture = UIPinchGestureRecognizer(target: self, action: "pinchGesture:")
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
+        let rotateGesture = UIRotationGestureRecognizer(target: self, action: #selector(rotateGesture(_:)))
+        let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinchGesture(_:)))
         queryArea.gestureRecognizers = [panGesture, rotateGesture, pinchGesture]
         
         print(end - start)
         
         
         
-        print(end - start)
+        //print(end - start)
         //tree.inOrderTraversal(tree.rootNode)
         //let queryArea = determineQueryArea(self.queryArea)
         
-        //collectQueryPointDataFor(Points: unique, QueryArea: MKMapRectNull, Tree: tree)
+        //
         //collectQueryAreaDataFor(queryArr)
         
         
@@ -87,7 +94,8 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     
-    
+    //For all points, this function is used to show the graphics the tree
+    //does to search for every point
     func collectQueryPointDataFor(Points points: [Pair],
         QueryArea query: QueryArea, Tree tree: KDTree) {
         
@@ -103,6 +111,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
+    //These functions are used to show what happens when the user queries different areas
     func collectMapQueryAreaDataFor(queryArea: MKMapRect) {
         
         let centerPair = Pair(xc: MKMapRectGetMidX(queryArea), yc: MKMapRectGetMidY(queryArea))
@@ -127,45 +136,107 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         let rectQuery = QueryArea(xc: Double(queryArea.origin.x), yc: Double(queryArea.origin.y), w: Double(queryArea.size.width), h: Double(queryArea.size.height))
         
         doubletree.querySectionWith(centerPair, Query: rectQuery, Root: doubletree.rootNode)
+        pvArray.append(doubletree.testData)
         
     }
 
     
     //MARK: Cycle
     
-    func startPointCycle() {
+    func startCycle() {
         print(__FUNCTION__)
         
-        var dispatch: Double = 0.5
-        screenViewsFromMapPoints[currentIteration].backgroundColor = UIColor.redColor()
-        self.view.bringSubviewToFront(screenViewsFromMapPoints[currentIteration])
         
-        let pvs = pvArray[currentIteration]
-        var lastControl = 0.0
-        vaM = Double(1) / Double(pvs.count)
-        newViewAlphaCycle()
         
-        for pv in pvs {
+        if pointMode {
             
-            let dpt: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,
-                Int64(dispatch * Double(NSEC_PER_SEC)))
+            var dispatch: Double = 0.5
+            screenViewsFromMapPoints[currentIteration].backgroundColor = UIColor.redColor()
+            self.view.bringSubviewToFront(screenViewsFromMapPoints[currentIteration])
             
-            dispatch_after(dpt, dispatch_get_main_queue(), { [unowned self] in
+            let pvs = pvArray[currentIteration]
+            var lastControl = 0.0
+            vaM = Double(1) / Double(pvs.count)
+            newViewAlphaCycle()
+            
+            for pv in pvs {
                 
-                lastControl = self.animateLineAtAxis(pv, Last: lastControl)
+                let dpt: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,
+                    Int64(dispatch * Double(NSEC_PER_SEC)))
                 
-                })
+                dispatch_after(dpt, dispatch_get_main_queue(), { [unowned self] in
+                    
+                    lastControl = self.animateLineAtAxis(pv, Last: lastControl)
+                    
+                    })
+                
+                let viewAlpha = NSTimer(timeInterval: dispatch, target: self, selector: Selector.init("viewAlphaManip"), userInfo: nil, repeats: false)
+                NSRunLoop.mainRunLoop().addTimer(viewAlpha, forMode: NSDefaultRunLoopMode)
+                
+                dispatch += 0.5
+                
+            }
             
-            let viewAlpha = NSTimer(timeInterval: dispatch, target: self, selector: Selector.init("viewAlphaManip"), userInfo: nil, repeats: false)
-            NSRunLoop.mainRunLoop().addTimer(viewAlpha, forMode: NSDefaultRunLoopMode)
+            let timer = NSTimer(timeInterval: (dispatch + 0.5), target: self, selector: Selector.init("endPointCycle"), userInfo: nil, repeats: false)
             
-            dispatch += 0.5
+            NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
+            
+        } else {
+            
+            var dispatch: Double = 4.0
+            var lastControl = 0.0
+            let pvs = pvArray[currentIteration]
+            //Animate the screen rect to rect on file and add center point
+            for rect in cgQueryViewArr {
+                
+//                let centerPoint = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 20.0, height: 20.0))
+//                centerPoint.center = CGPointMake(CGRectGetMidX(rect.frame), CGRectGetMidY(rect.frame))
+//                centerPoint.backgroundColor = UIColor.whiteColor()
+                print("center \(rect.0) frame \(rect.1)")
+                UIView.animateWithDuration(3.0, animations: {
+                    self.queryArea.center = rect.0
+                    self.queryArea.frame = rect.1
+                    self.queryArea.layoutIfNeeded()
+
+                    
+                    }) { (complete: Bool) -> Void in
+                        if complete {
+                            //self.view.addSubview(centerPoint)
+                            
+                            
+                        }
+                
+                        
+                }
+                
+                self.queryArea.center = rect.0
+                self.queryArea.frame = rect.1
+                //for each screen rect on file, animate the point data affiliated
+                //each point data should be for the center of the rect.
+                for pv in pvs {
+                    
+                    print("center \(self.queryArea.center) frame \(self.queryArea.frame)")
+                    let dpt: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW,
+                        Int64(dispatch * Double(NSEC_PER_SEC)))
+                    
+                    dispatch_after(dpt, dispatch_get_main_queue(), { [unowned self] in
+                        
+                        lastControl = self.animateLineAtAxis(pv, Last: lastControl)
+                        
+                        })
+                    
+                    let viewAlpha = NSTimer(timeInterval: dispatch, target: self, selector: Selector.init("viewAlphaManip"), userInfo: nil, repeats: false)
+                    NSRunLoop.mainRunLoop().addTimer(viewAlpha, forMode: NSDefaultRunLoopMode)
+                    
+                    dispatch += 0.5
+
+                    
+                }
+            }
+            
             
         }
         
-        let timer = NSTimer(timeInterval: (dispatch + 0.5), target: self, selector: Selector.init("endPointCycle"), userInfo: nil, repeats: false)
-        
-        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
         
     }
     
@@ -173,6 +244,8 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     
     func endPointCycle() {
         print(__FUNCTION__)
+        
+        
         
         for line in viewLines {
             line.removeFromSuperview()
@@ -182,7 +255,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         currentIteration++
         
         if currentIteration < 20 {
-            startPointCycle()
+            startCycle()
         } else {
             print("All Points Iterated")
         }
@@ -214,7 +287,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         
         //x axis
         if data.controlAxis == Axis.X {
-            lastCtrl = XscreenPointFromMapPoint(data.controlValue, maxX: maxX)
+            lastCtrl = data.controlValue
             
             
             if data.prevNodeSide == TreeDataIdentifier.Left  { //left side
@@ -232,7 +305,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
             
         } else {
             
-            lastCtrl = YscreenPointFromMapPoint(data.controlValue, maxY: maxY)
+            lastCtrl = data.controlValue
             
             if data.prevNodeSide == TreeDataIdentifier.Left  { //left side
                 
@@ -373,6 +446,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         
         let translation = recognizer.translationInView(self.view)
         recognizer.view!.center = CGPointMake(recognizer.view!.center.x + translation.x, recognizer.view!.center.y + translation.y)
+        print("recognizer: \(recognizer.view!.center) queryView: \(queryArea.center)")
         recognizer.setTranslation(CGPoint(x: 0.0, y: 0.0), inView: self.view)
     }
     
@@ -396,16 +470,48 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     
+    
+    //MARK: Actions
+    
     @IBAction func recordViewData(sender: UIButton) {
         
-        //let queryAreaAt = determineQueryArea(self.queryArea)
-        collectRectQueryAreaDataFor(self.queryArea.frame)
-        cgQueryArr.append(self.queryArea.frame)
+        //let queryAreaAt = determineQueryArea(self.queryArea)'
+        if pointMode {
+            
+            collectQueryPointDataFor(Points: uniquePairs, QueryArea: QueryArea(xc: 0.0, yc: 0.0, w: 0.0, h: 0.0), Tree: doubletree)
+            
+        } else {
+            collectRectQueryAreaDataFor(self.queryArea.frame)
+            
+            cgQueryViewArr.append((self.queryArea.center, self.queryArea.frame))
+        }
+        
 
     }
     
     
+    @IBAction func animateData(sender: UIButton) {
+        
+        startCycle()
+        
+    }
 
+    @IBAction func queryOptionAction(sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+            
+        case 0:
+            queryArea.hidden = true
+            pointMode = true
+            
+        case 1:
+            queryArea.hidden = false
+            pointMode = false
+            
+        default:
+            print("dont matter")
+        }
+    }
     /*
     // MARK: - Navigation
 

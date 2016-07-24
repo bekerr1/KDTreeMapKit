@@ -21,6 +21,9 @@
 		F4F2D5201C95096700D0AC99 /* KDDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2D51F1C95096700D0AC99 /* KDDemoViewController.swift */; };
 		F4F2D5221C950A3900D0AC99 /* KDMKViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2D5211C950A3900D0AC99 /* KDMKViewController.swift */; };
 		F4F2D5241C96057600D0AC99 /* KDColorKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F2D5231C96057600D0AC99 /* KDColorKeyView.swift */; };
+		F4FC30511D0742820048ADE7 /* KDTreeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FC30501D0742820048ADE7 /* KDTreeData.swift */; };
+		F4FC30531D0743160048ADE7 /* KDTreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FC30521D0743160048ADE7 /* KDTreeNode.swift */; };
+		F4FC30551D07772D0048ADE7 /* ParseableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FC30541D07772D0048ADE7 /* ParseableProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +64,9 @@
 		F4F2D51F1C95096700D0AC99 /* KDDemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDDemoViewController.swift; sourceTree = "<group>"; };
 		F4F2D5211C950A3900D0AC99 /* KDMKViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDMKViewController.swift; sourceTree = "<group>"; };
 		F4F2D5231C96057600D0AC99 /* KDColorKeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDColorKeyView.swift; sourceTree = "<group>"; };
+		F4FC30501D0742820048ADE7 /* KDTreeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDTreeData.swift; sourceTree = "<group>"; };
+		F4FC30521D0743160048ADE7 /* KDTreeNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KDTreeNode.swift; sourceTree = "<group>"; };
+		F4FC30541D07772D0048ADE7 /* ParseableProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseableProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +126,10 @@
 				F4F2D4F01C8E6DC000D0AC99 /* Info.plist */,
 				F4F2D4E81C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodeld */,
 				F4F2D5121C8E6DE300D0AC99 /* KDTree.swift */,
+				F4FC30521D0743160048ADE7 /* KDTreeNode.swift */,
+				F4FC30501D0742820048ADE7 /* KDTreeData.swift */,
 				F4F2D5141C8F482400D0AC99 /* PointParser.swift */,
+				F4FC30541D07772D0048ADE7 /* ParseableProtocol.swift */,
 				F4F2D51A1C8F9A6F00D0AC99 /* Casting.swift */,
 				F4F2D5181C8F54E700D0AC99 /* zipcode2.csv */,
 				F4F2D5231C96057600D0AC99 /* KDColorKeyView.swift */,
@@ -279,12 +288,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4F2D4EA1C8E6DC000D0AC99 /* KDTreeMapKit.xcdatamodeld in Sources */,
+				F4FC30511D0742820048ADE7 /* KDTreeData.swift in Sources */,
 				F4F2D5241C96057600D0AC99 /* KDColorKeyView.swift in Sources */,
 				F4F2D5221C950A3900D0AC99 /* KDMKViewController.swift in Sources */,
 				F4F2D5151C8F482400D0AC99 /* PointParser.swift in Sources */,
 				F4F2D5201C95096700D0AC99 /* KDDemoViewController.swift in Sources */,
 				F4F2D51B1C8F9A6F00D0AC99 /* Casting.swift in Sources */,
 				F4F2D5131C8E6DE300D0AC99 /* KDTree.swift in Sources */,
+				F4FC30531D0743160048ADE7 /* KDTreeNode.swift in Sources */,
+				F4FC30551D07772D0048ADE7 /* ParseableProtocol.swift in Sources */,
 				F4F2D4E21C8E6DC000D0AC99 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -510,6 +522,7 @@
 				F4F2D50B1C8E6DC100D0AC99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4F2D50C1C8E6DC100D0AC99 /* Build configuration list for PBXNativeTarget "KDTreeMapKitTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +531,7 @@
 				F4F2D50E1C8E6DC100D0AC99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4F2D50F1C8E6DC100D0AC99 /* Build configuration list for PBXNativeTarget "KDTreeMapKitUITests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +540,7 @@
 				F4F2D5111C8E6DC100D0AC99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

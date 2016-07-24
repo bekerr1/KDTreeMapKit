@@ -82,7 +82,7 @@ class KDTree  {
             //let cx: Double = center.x.convert()
             if let leftNode = rootNode.leftNode where center.x < controlValue {
                 
-                
+                //Data Collection (can be eliminated)
                 let data = TreeData(cv: controlValue!, ca: Axis.X, ns: TreeDataIdentifier.Left, pns: dataIndex, btc: false)
                 testData.append(data)
                 testDataIndex++
@@ -102,6 +102,7 @@ class KDTree  {
                 
                 if let rightNode = rootNode.rightNode {
                     
+                    //Data Collection (can be eliminated)
                     let data = TreeData(cv: controlValue!, ca: Axis.X, ns: TreeDataIdentifier.Right, pns: dataIndex, btc: false)
                     testData.append(data)
                     testDataIndex++
@@ -170,20 +171,13 @@ class KDTree  {
             
             if let point = rootNode.dataPoint {
                 
-//                let doublePoint: Double = point.x.convert()
-//                let doublePointy: Double = point.y.convert()
-                
                 let mapPoint = MKMapPointMake(point.x, point.y)
                 let mapArea = MKMapRectMake(queryArea.origin.x, queryArea.origin.y, queryArea.width, queryArea.height)
                 
-                //                let rectArea = CGRectMake(CGFloat(queryArea.origin.x), CGFloat(queryArea.origin.y), CGFloat(queryArea.width), CGFloat(queryArea.height))
-                //                let rectPoint = CGPointMake(CGFloat(doublePoint), CGFloat(doublePointy))
-                
-                
                 if MKMapRectContainsPoint(mapArea, mapPoint) {
+                    
                     currentPointsToPlot.append(point)
-                    //                } else if CGRectContainsPoint(rectArea, rectPoint) {
-                    //                    currentPointsToPlot.append(point)
+            
                 }
                 
             }
@@ -204,239 +198,9 @@ class KDTree  {
     
     
  }
- 
- 
- enum TreeDataIdentifier {
-    
-    case Left
-    case Right
-    case Root
-    case Nothing
- }
 
 
 
-
-struct TreeData {
-    
-    let controlValue: Double
-    let controlAxis: Axis
-    let nodeSide: TreeDataIdentifier
-    let prevNodeSide: TreeDataIdentifier
-    var backThroughCheck: Bool
-    
-    init(cv: Double, ca: Axis, ns: TreeDataIdentifier, pns: TreeDataIdentifier, btc: Bool) {
-        controlValue = cv
-        controlAxis = ca
-        nodeSide = ns
-        prevNodeSide = pns
-        backThroughCheck = btc
-        
-    }
-}
-
-
-
-enum Axis {
-    
-    case X
-    case Y
-    case Point
-}
-
-
-
-
-
-
-
-
- struct Pair   {
-    
-    var x: Double
-    var y: Double
-    
-    init(xc: Double, yc: Double) {
-        x = xc
-        y = yc
-    }
-    
-    
-}
-
-
- struct QueryArea  {
-    
-    var origin: Pair
-    var width: Double
-    var height: Double
-    
-    init(xc: Double, yc: Double, w: Double, h: Double) {
-        origin = Pair(xc: xc, yc: yc)
-        width = w
-        height = h
-    }
-    
-}
- 
- 
-
-
-
- class Node  {
-    
-    
-    //MARK: Properties
-    
-    var leftNode: Node?
-    var rightNode: Node?
-    
-    //Temporary until Long/Lat points are used
-    var dataPoint: Pair?
-    var control: Double?
-    var controlAxis = Axis.Point
-    
-    init(dp: Pair) {
-        dataPoint = dp
-    }
-    
-    init() {
-        
-    }
-    
-    
-    
-    
-    /*
-    Want to take the middle point and "draw a line" through it
-    Seperating the 'lower' and 'upper' points of the axis (even
-    numbers are x and odd numbers are y).
-    */
-    func buildKDTree(var points: [Pair], axis: Int) -> Node? {
-        
-        if points.count == 1 {
-            let current = Node(dp: points[0])
-            return current
-        }
-        
-        
-        var p1 = [Pair]()
-        var p2 = [Pair]()
-        
-        var median: Double = 0.0
-        let current = Node()
-        
-        
-        
-        //        output = points.reduce(MKMapPoint(x: 0.0, y: 0.0)) {
-        //            return MKMapPoint(x: $0.x + $1.x, y: $0.y + $1.y)
-        //        }
-        
-        if axis % 2 == 0 {
-            
-            points.sortInPlace { (element1, element2) -> Bool in
-                return element1.x < element2.x
-            }
-            
-            if (points.count == 0) {
-                //print("Nothing")
-                return current
-            }
-            
-            //median = ((Double((points.last?.x)!) - Double((points.first?.x)!)) / 2.0) + Double((points.first?.x)!)
-            median = medianOfX(points)
-            current.control = median
-            
-            
-            for pt in points {
-                
-                //let doublex: Double = pt.x.convert()
-                if pt.x < median {
-                    p1.append(pt)
-                } else {
-                    p2.append(pt)
-                }
-            }
-            
-            current.controlAxis = .X
-            
-        } else {
-            
-            points.sortInPlace { (element1, element2) -> Bool in
-                return element1.y < element2.y
-            }
-            
-            if (points.count == 0) {
-                //print("Nothing")
-                return current
-            }
-            
-            //median = ((Double((points.last?.y)!) - Double((points.first?.y)!)) / 2.0) + Double((points.first?.y)!)
-            
-            median = medianOfY(points)
-            current.control = median
-            
-            for pt in points {
-                
-                //let doubley: Double = pt.y.convert()
-                if pt.y < median {
-                    p1.append(pt)
-                } else {
-                    p2.append(pt)
-                }
-            }
-            
-            current.controlAxis = .Y
-            
-        }
-        
-        current.leftNode = buildKDTree(p1, axis: axis+1)
-        current.rightNode = buildKDTree(p2, axis: axis+1)
-        
-        return current
-        
-    }
-    
-    
-    
-    func medianOfX(points: [Pair]) -> Double {
-        
-        let firstPair = points.first
-        let lastPair = points.last
-//        let firstX: Double = firstPair!.x.convert()
-//        let lastX: Double = lastPair!.x.convert()
-        
-        return (((lastPair?.x)! - (firstPair?.x)!) / 2) + (firstPair?.x)!
-        //return ((lastP - firstX) / 2) + firstX
-        
-    }
-    
-    
-    func medianOfY(points: [Pair]) -> Double {
-        
-        let firstPair = points.first
-        let lastPair = points.last
-        //        let firstX: Double = firstPair!.x.convert()
-        //        let lastX: Double = lastPair!.x.convert()
-        
-        return (((lastPair?.y)! - (firstPair?.y)!) / 2) + (firstPair?.y)!
-        //return ((lastP - firstX) / 2) + firstX
-        
-    }
-    
-//    func medianOfY(points: [Pair]) -> Double {
-//        
-//        let firstPair = points.first
-//        let lastPair = points.last
-//        let firstY: Double = firstPair!.y.convert()
-//        let lastY: Double = lastPair!.y.convert()
-//        
-//        return ((lastY - firstY) / 2) + firstY
-//
-//    }
-    
-    
-}
 
 
 

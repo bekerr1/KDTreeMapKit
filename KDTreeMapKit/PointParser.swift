@@ -51,12 +51,8 @@ class PointParser {
                                     CLLocationPoints.append(mapPoint)
                                 }
                                 
-
-                                
                             }
-                            
-                            
-                            
+
                             dex++
                         }
                         
