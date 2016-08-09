@@ -27,9 +27,9 @@ class KDTree  {
        rootNode = Node()
     }
     
-    func buildTree(pts: [Pair], axis: Int = 0) { //MKMapPoint
+    func buildTree(inout pts: [Pair], axis: Int = 0) { //MKMapPoint
         
-        rootNode = rootNode.buildKDTree(pts, axis: axis)!
+        rootNode = rootNode.buildKDTree(&pts, axis: axis)!
     }
     
     
@@ -85,7 +85,7 @@ class KDTree  {
                 //Data Collection (can be eliminated)
                 let data = TreeData(cv: controlValue!, ca: Axis.X, ns: TreeDataIdentifier.Left, pns: dataIndex, btc: false)
                 testData.append(data)
-                testDataIndex++
+                testDataIndex += 1
                 
                 querySectionWith(center, Query: queryArea, Root: leftNode)
                 
@@ -105,7 +105,7 @@ class KDTree  {
                     //Data Collection (can be eliminated)
                     let data = TreeData(cv: controlValue!, ca: Axis.X, ns: TreeDataIdentifier.Right, pns: dataIndex, btc: false)
                     testData.append(data)
-                    testDataIndex++
+                    testDataIndex += 1
                     
                     querySectionWith(center, Query: queryArea, Root: rightNode)
                     
@@ -133,7 +133,7 @@ class KDTree  {
                 
                 let data = TreeData(cv: controlValue!, ca: Axis.Y, ns: TreeDataIdentifier.Left, pns: dataIndex, btc: false)
                 testData.append(data)
-                testDataIndex++
+                testDataIndex += 1
                 
                 querySectionWith(center, Query: queryArea, Root: leftNode)
                  
@@ -152,7 +152,7 @@ class KDTree  {
                     
                     let data = TreeData(cv: controlValue!, ca: Axis.Y, ns: TreeDataIdentifier.Right, pns: dataIndex, btc: false)
                     testData.append(data)
-                    testDataIndex++
+                    testDataIndex += 1
                     
                     querySectionWith(center, Query: queryArea, Root: rightNode)
                     

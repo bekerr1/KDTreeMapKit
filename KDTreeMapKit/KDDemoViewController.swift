@@ -60,7 +60,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         uniquePairs = pairsFromCGPoints(screenPoints)
         
         let start = CFAbsoluteTimeGetCurrent()
-        doubletree.buildTree(uniquePairs)
+        doubletree.buildTree(&uniquePairs)
         let end = CFAbsoluteTimeGetCurrent()
         
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:)))
@@ -106,7 +106,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
             tree.querySectionWith(points[i], Query: query, Root: tree.rootNode)
             pvArray.append(tree.testData)
             tree.resetTestData()
-            i++
+            i += 1
         }
     }
     
@@ -144,7 +144,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     //MARK: Cycle
     
     func startCycle() {
-        print(__FUNCTION__)
+        print(#function)
         
         
         
@@ -170,14 +170,14 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
                     
                     })
                 
-                let viewAlpha = NSTimer(timeInterval: dispatch, target: self, selector: Selector.init("viewAlphaManip"), userInfo: nil, repeats: false)
+                let viewAlpha = NSTimer(timeInterval: dispatch, target: self, selector: #selector(viewAlphaManip), userInfo: nil, repeats: false)
                 NSRunLoop.mainRunLoop().addTimer(viewAlpha, forMode: NSDefaultRunLoopMode)
                 
                 dispatch += 0.5
                 
             }
             
-            let timer = NSTimer(timeInterval: (dispatch + 0.5), target: self, selector: Selector.init("endPointCycle"), userInfo: nil, repeats: false)
+            let timer = NSTimer(timeInterval: (dispatch + 0.5), target: self, selector: #selector(endPointCycle), userInfo: nil, repeats: false)
             
             NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSDefaultRunLoopMode)
             
@@ -225,7 +225,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
                         
                         })
                     
-                    let viewAlpha = NSTimer(timeInterval: dispatch, target: self, selector: Selector.init("viewAlphaManip"), userInfo: nil, repeats: false)
+                    let viewAlpha = NSTimer(timeInterval: dispatch, target: self, selector: #selector(viewAlphaManip), userInfo: nil, repeats: false)
                     NSRunLoop.mainRunLoop().addTimer(viewAlpha, forMode: NSDefaultRunLoopMode)
                     
                     dispatch += 0.5
@@ -243,7 +243,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     func endPointCycle() {
-        print(__FUNCTION__)
+        print(#function)
         
         
         
@@ -252,7 +252,7 @@ class KDDemoViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         
         screenViewsFromMapPoints[currentIteration].backgroundColor = UIColor.blackColor()
-        currentIteration++
+        currentIteration += 1
         
         if currentIteration < 20 {
             startCycle()

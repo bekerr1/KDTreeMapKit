@@ -53,7 +53,7 @@ class PointParser {
                                 
                             }
 
-                            dex++
+                            dex += 1
                         }
                         
                     } else {

@@ -43,19 +43,24 @@ protocol Coordinate {
 }
 
 
+enum KDNode {
+    
+    case node
+    case leaf
+}
 
 
 
-class Node<PointSystem>  {
+struct KDRootNode  {
     
     
     //MARK: Properties
     
-    var leftNode: Node?
-    var rightNode: Node?
+    var leftNode: KDNode?
+    var rightNode: KDNode?
     
     //Temporary until Long/Lat points are used
-    var dataPoint: PointSystem?
+    var dataPoint: Pair?
     
     //Variable that influences which way the kd tree branches/spans out
     var control: Double?
@@ -63,7 +68,7 @@ class Node<PointSystem>  {
     //variable to show if node is an axis or a point
     var controlAxis = Axis.Point
     
-    init(dp: PointSystem) {
+    init(dp: Pair) {
         dataPoint = dp
     }
     
@@ -76,7 +81,7 @@ class Node<PointSystem>  {
      Seperating the 'lower' and 'upper' points of the axis (even
      numbers are x and odd numbers are y).
      */
-    func buildKDTree(var points: [PointSystem], axis: Int) -> Node? {
+    func buildKDTree(inout points: [Pair], axis: Int) -> Node? {
         
         if points.count == 1 {
             let current = Node(dp: points[0])
@@ -88,7 +93,7 @@ class Node<PointSystem>  {
         var p2 = [Pair]()
         
         var median: Double = 0.0
-        let current = Node()
+        var current = Node()
         
         //x axis split
         if axis % 2 == 0 {
@@ -144,8 +149,8 @@ class Node<PointSystem>  {
             
         }
         //recurse down the tree building the left node tree with < median and right node tree with > median
-        current.leftNode = buildKDTree(p1, axis: axis+1)
-        current.rightNode = buildKDTree(p2, axis: axis+1)
+        current.leftNode = buildKDTree(&p1, axis: axis+1)
+        current.rightNode = buildKDTree(&p2, axis: axis+1)
         
         return current
         
